@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Boutique de Vêtements</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-size: 1.1em;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 1.2em;
+            color: #2c3e50;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .buy-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .buy-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .cart-count {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Boutique de Vêtements</h1>
+    </header>
+
+    <div id="cart-counter" class="cart-count">Panier: 0</div>
+    <div class="products-grid" id="products-container"></div>
+
+    <script>
+        const products = [
+            { id: 1, name: "T-shirt Blanc Basic", price: 19.99, image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400" },
+            { id: 2, name: "Jean Slim Bleu", price: 49.99, image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=400" },
+            { id: 3, name: "Robe d'Été Fleurie", price: 39.99, image: "https://images.unsplash.com/photo-1612336307429-8a898d10e223?w=400" },
+            { id: 4, name: "Veste en Cuir", price: 129.99, image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400" },
+            { id: 5, name: "Pull-over Gris", price: 45.99, image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=400" },
+            { id: 6, name: "Chemise à Carreaux", price: 34.99, image: "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400" },
+            { id: 7, name: "Robe de Soirée", price: 89.99, image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400" },
+            { id: 8, name: "Short en Jean", price: 29.99, image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=400" },
+            { id: 9, name: "Blazer Noir", price: 79.99, image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400" },
+            { id: 10, name: "Jupe Plissée", price: 39.99, image: "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=400" },
+            { id: 11, name: "Manteau d'Hiver", price: 149.99, image: "https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=400" },
+            { id: 12, name: "Pantalon Chino", price: 44.99, image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=400" },
+            { id: 13, name: "Robe Longue", price: 69.99, image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400" },
+            { id: 14, name: "Sweat à Capuche", price: 54.99, image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=400" },
+            { id: 15, name: "Débardeur Sport", price: 24.99, image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400" },
+            { id: 16, name: "Chemisier Blanc", price: 39.99, image: "https://images.unsplash.com/photo-1598961942613-ba897716405b?w=400" },
+            { id: 17, name: "Jean Mom", price: 59.99, image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400" },
+            { id: 18, name: "Robe Midi", price: 79.99, image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400" },
+            { id: 19, name: "T-shirt Graphique", price: 29.99, image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400" },
+            { id: 20, name: "Pantalon Large", price: 49.99, image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400" },
+            { id: 21, name: "Cardigan Long", price: 64.99, image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400" },
+            { id: 22, name: "Short Sport", price: 34.99, image: "https://images.unsplash.com/photo-1617953644310-e690da9be982?w=400" },
+            { id: 23, name: "Robe Casual", price: 44.99, image: "https://images.unsplash.com/photo-1495385794356-15371f348c31?w=400" },
+            { id: 24, name: "Pull Maille", price: 59.99, image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400" },
+            { id: 25, name: "Jupe Courte", price: 34.99, image: "https://images.unsplash.com/photo-1577900232427-20fdf74c65ce?w=400" },
+            { id: 26, name: "Blouson Bomber", price: 89.99, image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400" },
+            { id: 27, name: "Robe Chemise", price: 69.99, image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400" },
+            { id: 28, name: "Pantalon Costume", price: 79.99, image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400" },
+            { id: 29, name: "Top Dentelle", price: 39.99, image: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=400" },
+            { id: 30, name: "Jean Large", price: 54.99, image: "https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=400" }
+        ];
+
+        let cartCount = 0;
+        const cartCounter = document.getElementById('cart-counter');
+        const productsContainer = document.getElementById('products-container');
+
+        function updateCart() {
+            cartCounter.textContent = `Panier: ${cartCount}`;
+        }
+
+        async function sendToNiFi(purchaseData) {
+            try {
+                const response = await fetch(NIFI_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(purchaseData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                console.log('Purchase event sent to NiFi successfully');
+            } catch (error) {
+                console.error('Error sending purchase event to NiFi:', error);
+            }
+        }
+
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <h3 class="product-title">${product.name}</h3>
+                <p class="product-price">${product.price.toFixed(2)} €</p>
+                <button class="buy-btn" onclick="addToCart(${product.id})">Acheter</button>
+            `;
+            
+            return card;
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                cartCount++;
+                updateCart();
+
+                // Créer l'événement d'achat
+                const purchaseEvent = {
+                    eventType: 'purchase',
+                    timestamp: new Date().toISOString(),
+                    productId: product.id,
+                    productName: product.name,
+                    price: product.price,
+                    currency: 'EUR',
+                    sessionId: 'session-' + Math.random().toString(36).substring(7),
+                    userId: 'user-' + Math.random().toString(36).substring(7) // Simulé pour l'exemple
+                };
+
+                // Envoyer à NiFi
+                sendToNiFi(purchaseEvent);
+                
+                alert(`${product.name} ajouté au panier !`);
+            }
+        }
+
+        // Afficher tous les produits
+        products.forEach(product => {
+            productsContainer.appendChild(createProductCard(product));
+        });
+    </script>
+</body>
+</html>
