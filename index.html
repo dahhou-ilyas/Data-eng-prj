@@ -107,6 +107,8 @@
     <div class="products-grid" id="products-container"></div>
 
     <script>
+        const NIFI_ENDPOINT = 'http://localhost:8081/contentListener';
+
         const products = [
             { id: 1, name: "T-shirt Blanc Basic", price: 19.99, image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400" },
             { id: 2, name: "Jean Slim Bleu", price: 49.99, image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=400" },
@@ -153,8 +155,10 @@
                 const response = await fetch(NIFI_ENDPOINT, {
                     method: 'POST',
                     headers: {
+                        'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
+                    mode: 'cors',
                     body: JSON.stringify(purchaseData)
                 });
                 
@@ -191,19 +195,18 @@
                 // Créer l'événement d'achat
                 const purchaseEvent = {
                     eventType: 'purchase',
-                    timestamp: new Date().toISOString(),
+                    timestamp: new Date().toISOString().slice(0, 19).replace("T", " "),
                     productId: product.id,
                     productName: product.name,
                     price: product.price,
                     currency: 'EUR',
-                    sessionId: 'session-' + Math.random().toString(36).substring(7),
-                    userId: 'user-' + Math.random().toString(36).substring(7) // Simulé pour l'exemple
                 };
 
                 // Envoyer à NiFi
                 sendToNiFi(purchaseEvent);
+
+                console.log(purchaseEvent);
                 
-                alert(`${product.name} ajouté au panier !`);
             }
         }
 

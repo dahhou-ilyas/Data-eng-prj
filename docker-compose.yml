@@ -10,7 +10,7 @@ services:
       - WILDFLY_ADMIN_USER=admin
       - WILDFLY_ADMIN_PASSWORD=admin
     ports:
-      - "8080:8080"  # Interface Web
+      - "8080:8080"
       - "11112:11112"  # DICOM
     depends_on:
       - db
@@ -34,10 +34,17 @@ services:
     image: apache/nifi:latest
     ports:
       - "8443:8443"
+      - "8081:8081"
     environment:
       - NIFI_WEB_HTTP_PORT=8443
       - SINGLE_USER_CREDENTIALS_USERNAME=admin
       - SINGLE_USER_CREDENTIALS_PASSWORD=adminpassword
+#zaz
+      - NIFI_WEB_HTTP_CORS_ENABLED=true
+      - NIFI_WEB_HTTP_CORS_ALLOWED_HEADERS=*
+      - NIFI_WEB_HTTP_CORS_ALLOWED_ORIGINS=*
+      - NIFI_WEB_HTTP_CORS_ALLOWED_METHODS=GET,HEAD,POST,OPTIONS,PUT,DELETE
+      
     volumes:
       - nifi_conf:/opt/nifi/nifi-current/conf
       - nifi_content:/opt/nifi/nifi-current/content_repository
@@ -46,6 +53,7 @@ services:
       - nifi_provenance:/opt/nifi/nifi-current/provenance_repository
       - nifi_state:/opt/nifi/nifi-current/state
       - /Users/ilyasdahhou/Desktop/ecom-front/ecom/logs:/data/input
+      - /Users/ilyasdahhou/Desktop/ecom-front/ecom/custom.properties:/opt/nifi/nifi-current/conf/nifi.properties
     networks:
       - pacs_network
 
