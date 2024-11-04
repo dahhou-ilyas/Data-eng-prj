@@ -39,12 +39,10 @@ services:
       - NIFI_WEB_HTTP_PORT=8443
       - SINGLE_USER_CREDENTIALS_USERNAME=admin
       - SINGLE_USER_CREDENTIALS_PASSWORD=adminpassword
-#zaz
       - NIFI_WEB_HTTP_CORS_ENABLED=true
       - NIFI_WEB_HTTP_CORS_ALLOWED_HEADERS=*
       - NIFI_WEB_HTTP_CORS_ALLOWED_ORIGINS=*
       - NIFI_WEB_HTTP_CORS_ALLOWED_METHODS=GET,HEAD,POST,OPTIONS,PUT,DELETE
-      
     volumes:
       - nifi_conf:/opt/nifi/nifi-current/conf
       - nifi_content:/opt/nifi/nifi-current/content_repository
@@ -53,7 +51,18 @@ services:
       - nifi_provenance:/opt/nifi/nifi-current/provenance_repository
       - nifi_state:/opt/nifi/nifi-current/state
       - /Users/ilyasdahhou/Desktop/ecom-front/ecom/logs:/data/input
-      - /Users/ilyasdahhou/Desktop/ecom-front/ecom/custom.properties:/opt/nifi/nifi-current/conf/nifi.properties
+    networks:
+      - pacs_network
+
+  # Nginx comme proxy pour NiFi
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - nifi
+    ports:
+      - "80:80"  # Nginx exposé sur le port 80
+    volumes:
+      - /Users/ilyasdahhou/Desktop/ecom-front/ecom/nginx.conf:/etc/nginx/nginx.conf  # Fichier de configuration Nginx
     networks:
       - pacs_network
 
