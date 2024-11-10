@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  jupyter:
+    image: jupyter/pyspark-notebook:latest
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - /Users/ilyasdahhou/Desktop/ecom-front/ecom/spark_processing/notebooks:/home/jovyan/work
+    command: ["start.sh", "jupyter", "lab", "--NotebookApp.token=''", "--NotebookApp.password=''"]
+
+volumes:
+  notebooks:
