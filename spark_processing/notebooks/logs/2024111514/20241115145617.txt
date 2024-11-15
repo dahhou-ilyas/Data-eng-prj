@@ -1,0 +1,3 @@
+ 2024-11-15 14:56:16|12|Pantalon Chino|EUR|44.99|purchase
+ 2024-11-15 14:56:16|12|Pantalon Chino|EUR|44.99|purchase
+ 2024-11-15 14:56:17|12|Pantalon Chino|EUR|44.99|purchase
