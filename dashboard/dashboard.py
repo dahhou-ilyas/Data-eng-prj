@@ -10,7 +10,7 @@ class SalesDashboard:
     def __init__(self, output_dir="/Users/ilyasdahhou/Desktop/ecom-front/ecom/spark_processing/notebooks/output"):
         self.output_dir = output_dir
         self.app = dash.Dash(__name__)
-        self.setup_layout()
+        self.setup_layoutt()
         self.setup_callbacks()
         
     def load_data(self, start_date, end_date):
@@ -52,7 +52,7 @@ class SalesDashboard:
             print(f"Erreur lors du chargement des données: {e}")
             return pd.DataFrame()
 
-    def setup_layout(self):
+    def setup_layoutt(self):
         """
         Configure la mise en page du dashboard
         """
