@@ -152,14 +152,17 @@ class SalesDashboard:
                 )
                 
                 # 3. Ventes par heure
-                hourly_sales = df.groupby('hour')['sales'].sum().reset_index()
+                hourly_sales = df.groupby(['hour', 'date'])['sales'].sum().reset_index()
+                print(hourly_sales)
                 fig3 = px.bar(
                     hourly_sales,
                     x='hour',
                     y='sales',
                     title="Distribution des Ventes par Heure",
-                    labels={'hour': 'Heure', 'sales': 'Ventes totales'}
+                    labels={'hour': 'Heure', 'sales': 'Ventes totales'},
+                    hover_data=['date']
                 )
+                fig3.update_layout(bargap=0.5, bargroupgap=0.5)
                 
                 # 4. Parts de marché
                 product_shares = df.groupby('product')['sales'].sum()
