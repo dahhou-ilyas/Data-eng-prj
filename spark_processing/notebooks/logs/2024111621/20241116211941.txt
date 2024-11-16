@@ -1,0 +1,5 @@
+ 2024-11-16 21:19:40|26|Blouson Bomber|EUR|89.99|purchase
+ 2024-11-16 21:19:40|26|Blouson Bomber|EUR|89.99|purchase
+ 2024-11-16 21:19:41|26|Blouson Bomber|EUR|89.99|purchase
+ 2024-11-16 21:19:41|26|Blouson Bomber|EUR|89.99|purchase
+ 2024-11-16 21:19:41|26|Blouson Bomber|EUR|89.99|purchase

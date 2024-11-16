@@ -1,0 +1,1 @@
+ 2024-11-16 21:19:21|2|Jean Slim Bleu|EUR|49.99|purchase

@@ -1,0 +1,6 @@
+ 2024-11-16 21:19:31|17|Jean Mom|EUR|59.99|purchase
+ 2024-11-16 21:19:31|17|Jean Mom|EUR|59.99|purchase
+ 2024-11-16 21:19:31|17|Jean Mom|EUR|59.99|purchase
+ 2024-11-16 21:19:31|17|Jean Mom|EUR|59.99|purchase
+ 2024-11-16 21:19:31|17|Jean Mom|EUR|59.99|purchase
+ 2024-11-16 21:19:30|17|Jean Mom|EUR|59.99|purchase

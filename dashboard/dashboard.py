@@ -98,7 +98,7 @@ class SalesDashboard:
             html.Div([
                 dcc.Graph(id='hourly-sales-chart', style={'width': '50%'}),
                 dcc.Graph(id='product-share-chart', style={'width': '50%'})
-            ], style={'display': 'flex'})
+            ], style={'display': 'flex'}),
         ])
 
     def setup_callbacks(self):
