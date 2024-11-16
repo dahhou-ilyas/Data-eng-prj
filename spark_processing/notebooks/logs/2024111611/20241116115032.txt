@@ -1,0 +1,3 @@
+ 2024-11-16 11:50:31|6|Chemise à Carreaux|EUR|34.99|purchase
+ 2024-11-16 11:50:31|6|Chemise à Carreaux|EUR|34.99|purchase
+ 2024-11-16 11:50:31|6|Chemise à Carreaux|EUR|34.99|purchase

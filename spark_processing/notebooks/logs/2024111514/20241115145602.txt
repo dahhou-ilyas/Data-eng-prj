@@ -1,6 +1,0 @@
- 2024-11-15 14:56:01|9|Blazer Noir|EUR|79.99|purchase
- 2024-11-15 14:56:01|9|Blazer Noir|EUR|79.99|purchase
- 2024-11-15 14:56:01|9|Blazer Noir|EUR|79.99|purchase
- 2024-11-15 14:56:02|9|Blazer Noir|EUR|79.99|purchase
- 2024-11-15 14:56:02|9|Blazer Noir|EUR|79.99|purchase
- 2024-11-15 14:56:02|9|Blazer Noir|EUR|79.99|purchase

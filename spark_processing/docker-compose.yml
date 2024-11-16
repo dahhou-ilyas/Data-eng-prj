@@ -3,14 +3,25 @@ version: '3'
 services:
   jupyter:
     image: jupyter/pyspark-notebook:latest
+    user: root
     ports:
       - "8888:8888"
       - "4040:4040"
     environment:
       - JUPYTER_ENABLE_LAB=yes
     volumes:
-      - /Users/ilyasdahhou/Desktop/ecom-front/ecom/spark_processing/notebooks:/home/jovyan/work
-    command: ["start.sh", "jupyter", "lab", "--NotebookApp.token=''", "--NotebookApp.password=''"]
-
+      - ./notebooks:/home/jovyan/work
+    command: >
+      bash -c "
+      apt-get update &&
+      apt-get install -y cron &&
+      pip install pyspark &&
+      echo '0 * * * * /opt/conda/bin/python3 /home/jovyan/work/sprak-process.py >> /home/jovyan/work/scheduler.log 2>&1' > /etc/cron.d/spark-job-scheduler &&
+      chmod 0644 /etc/cron.d/spark-job-scheduler &&
+      crontab /etc/cron.d/spark-job-scheduler &&
+      cron &&
+      start.sh jupyter lab --NotebookApp.token='' --NotebookApp.password=''
+      "
+      
 volumes:
   notebooks:

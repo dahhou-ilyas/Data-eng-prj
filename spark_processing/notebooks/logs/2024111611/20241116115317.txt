@@ -1,0 +1,7 @@
+ 2024-11-16 11:53:17|23|Robe Casual|EUR|44.99|purchase
+ 2024-11-16 11:53:17|23|Robe Casual|EUR|44.99|purchase
+ 2024-11-16 11:53:17|23|Robe Casual|EUR|44.99|purchase
+ 2024-11-16 11:53:17|23|Robe Casual|EUR|44.99|purchase
+ 2024-11-16 11:53:16|23|Robe Casual|EUR|44.99|purchase
+ 2024-11-16 11:53:16|23|Robe Casual|EUR|44.99|purchase
+ 2024-11-16 11:53:16|23|Robe Casual|EUR|44.99|purchase

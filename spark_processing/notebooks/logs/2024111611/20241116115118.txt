@@ -1,0 +1,4 @@
+ 2024-11-16 11:51:17|8|Short en Jean|EUR|29.99|purchase
+ 2024-11-16 11:51:17|8|Short en Jean|EUR|29.99|purchase
+ 2024-11-16 11:51:18|8|Short en Jean|EUR|29.99|purchase
+ 2024-11-16 11:51:18|8|Short en Jean|EUR|29.99|purchase
